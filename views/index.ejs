@@ -6,6 +6,14 @@
   </head>
   <body>
     <h1>Welcome <%= user.username %></h1>
-    <p>This is your secret: <%= user.secret %></p>
+    <p>This is your status: <%= user.status %></p>
+    <h2>Set new status:</h2>
+    <form class="" action="/setStatus" method="post">
+      <input type="text" name="status" value="">
+      <button type="submit" name="button">Submit</button>
+    </form>
+    <form class="" action="/logout" method="post">
+      <button type="submit" name="button">logout</button>
+    </form>
   </body>
 </html>
