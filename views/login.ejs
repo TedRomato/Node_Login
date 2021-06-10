@@ -15,6 +15,9 @@
       <br>
       <button type="submit" name="button">login</button>
     </form>
+    <% if(repeatedLogin){ %>
+      <%= "Incorrect login credentials" %>
+    <% } %>
     <a href="/register">register</a>
   </body>
 </html>

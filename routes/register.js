@@ -8,17 +8,26 @@ const saltRounds = 13;
 
 module.exports = () => {
 
-
   router.get('/', (req, res) => {
-    console.log("reg");
-    res.render('register.ejs');
+    res.redirect('/register/null');
+  });
+
+  router.get('/:requestedUsername', (req, res) => {
+    const requestedUsername = req.params.requestedUsername;
+    res.render('register.ejs', {requestedUsername: req.params.requestedUsername});
   });
 
 
   router.post('/', async (req, res) => {
-    const newUser = new User({username: req.body.username, password: undefined, status: null});
 
     try {
+
+      const registeredUser = await User.findOne({username: req.body.username});
+
+      if(registeredUser) return res.redirect(`/register/${registeredUser.username}`);
+
+      const newUser = new User({username: req.body.username, password: undefined, status: null});
+
       const hashedPassword = await bcrypt.hash(req.body.password, saltRounds);
       newUser.password = hashedPassword;
       await newUser.save();

@@ -4,5 +4,4 @@ module.exports = (passport, app) => {
   app.use(passport.initialize());
   app.use(passport.session());
   passport.use(require("./local_strategy.js"));
-  console.log("Passport initialized");
 }
