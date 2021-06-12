@@ -15,7 +15,7 @@
       <br>
       <button type="submit" name="button">register</button>
     </form>
-    <% if(requestedUsername !== "null") { %>
+    <% if(requestedUsername !== null) { %>
       <p><%= `${requestedUsername} username is taken` %></p>
     <% } %>
     <a href="/login">login</a>

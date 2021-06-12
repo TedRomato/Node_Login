@@ -29,11 +29,11 @@ const initializePassport = require("./passport_util/initialize_passport.js");
 initializePassport(passport, app);
 
 
-
+//ROUTER SETUP 
 
 const rootRouter = require('./routes/index.js')(passport);
 const registerRouter = require('./routes/register.js')();
-const loginRouter = require('./routes/login.js')(passport, express.Router());
+const loginRouter = require('./routes/login.js')(passport);
 
 
 app.use('/', rootRouter);

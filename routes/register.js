@@ -9,12 +9,13 @@ const saltRounds = 13;
 module.exports = () => {
 
   router.get('/', (req, res) => {
-    res.redirect('/register/null');
+    res.redirect('/register/false/null');
   });
 
-  router.get('/:requestedUsername', (req, res) => {
-    const requestedUsername = req.params.requestedUsername;
-    res.render('register.ejs', {requestedUsername: req.params.requestedUsername});
+  router.get('/:usernameIsTaken/:requestedUsername', (req, res) => {
+    let requestedUsername = req.params.requestedUsername;
+    if(req.params.usernameIsTaken === 'false') requestedUsername = null;
+    res.render('register.ejs', {requestedUsername: requestedUsername});
   });
 
 
@@ -24,7 +25,7 @@ module.exports = () => {
 
       const registeredUser = await User.findOne({username: req.body.username});
 
-      if(registeredUser) return res.redirect(`/register/${registeredUser.username}`);
+      if(registeredUser) return res.redirect(`/register/true/${registeredUser.username}`);
 
       const newUser = new User({username: req.body.username, password: undefined, status: null});
 

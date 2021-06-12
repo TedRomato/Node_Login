@@ -7,7 +7,6 @@ const bcrypt = require('bcrypt');
 const strategy = new LocalStrategy(
 
   async (username, password, done) => {
-    console.log("In strategy");
     let user;
 
     try {
