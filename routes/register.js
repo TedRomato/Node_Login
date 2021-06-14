@@ -5,12 +5,17 @@ const bcrypt = require('bcrypt');
 const saltRounds = 13;
 
 
-
 module.exports = () => {
+
 
   router.get('/', (req, res) => {
     res.redirect('/register/false/null');
   });
+
+
+
+
+//TODO: feed error/status object, instead of using only requestedUsername
 
   router.get('/:usernameIsTaken/:requestedUsername', (req, res) => {
     let requestedUsername = req.params.requestedUsername;

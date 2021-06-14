@@ -2,6 +2,9 @@
 const express = require('express');
 const router = express.Router();
 
+//TODO: feed error/status object, instead of using reqpeatedLogin
+
+
 
 module.exports = (passport) => {
 
@@ -9,6 +12,7 @@ module.exports = (passport) => {
   router.get("/", (req, res) => {
     res.redirect("/login/false");
   })
+
 
   router.get('/:repeatedLogin', (req, res) => {
     if(req.isAuthenticated()) return res.redirect("/");

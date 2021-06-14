@@ -15,8 +15,9 @@
       <br>
       <button type="submit" name="button">register</button>
     </form>
+    <!-- TODO: Handle error/status cases-->
     <% if(requestedUsername !== null) { %>
-      <p><%= `${requestedUsername} username is taken` %></p>
+      <%= `${requestedUsername} username is taken` %>
     <% } %>
     <a href="/login">login</a>
   </body>
