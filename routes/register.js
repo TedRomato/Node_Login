@@ -23,16 +23,20 @@ module.exports = () => {
   router.post('/', async (req, res) => {
 
     try {
-
+\t//try to find user with username requested for registration
       const registeredUser = await User.findOne({username: req.body.username});
 
       if(registeredUser) return res.redirect(`/register/true/${registeredUser.username}`);
 
+\t//create a new user object
       const newUser = new User({username: req.body.username, password: undefined, status: null});
-
+\t//hash password, and assign it
       const hashedPassword = await bcrypt.hash(req.body.password, saltRounds);
       newUser.password = hashedPassword;
+
       await newUser.save();
+
+\t//login new user
       req.login(newUser, (err) => {
         if(err) res.redirect("/login")
         res.redirect("/");
