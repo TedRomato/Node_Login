@@ -13,10 +13,6 @@ module.exports = () => {
   });
 
 
-
-
-//TODO: feed error/status object, instead of using only requestedUsername
-
   router.get('/:usernameIsTaken/:requestedUsername', (req, res) => {
     let requestedUsername = req.params.requestedUsername;
     if(req.params.usernameIsTaken === 'false') requestedUsername = null;

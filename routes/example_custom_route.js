@@ -10,7 +10,7 @@ module.exports = (passport) => {
   router.get('/',
   (req, res, next) => authenticated(req, res, next),
     (req, res) => {
-      res.render('index.ejs', {user: req.user})
+      res.render('example_custom_view.ejs', {user: req.user})
     }
   );
 
@@ -30,7 +30,7 @@ module.exports = (passport) => {
       try {
         req.user.status = req.body.status;
         await req.user.save();
-        res.render('index.ejs', {user: req.user});
+        res.render('example_custom_view.ejs', {user: req.user});
       } catch (e) {
         console.log(e);
         res.status(500).send('Something broke!');

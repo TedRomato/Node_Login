@@ -2,8 +2,6 @@
 const express = require('express');
 const router = express.Router();
 
-//TODO: feed error/status object, instead of using reqpeatedLogin
-
 
 
 module.exports = (passport) => {

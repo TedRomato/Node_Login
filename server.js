@@ -20,7 +20,7 @@ app.set('view engine', 'ejs');
 
 app.use(session({secret: process.env.SESSION_SECRET}));
 app.use(express.urlencoded({extended: false}));
-
+app.use(express.static('public'));
 
 
 //PASSPORT SETUP
@@ -29,17 +29,18 @@ const initializePassport = require("./passport_util/initialize_passport.js");
 initializePassport(passport, app);
 
 
-//ROUTER SETUP
+//AUTH ROUTER SETUP
 
-const rootRouter = require('./routes/index.js')(passport);
 const registerRouter = require('./routes/register.js')();
 const loginRouter = require('./routes/login.js')(passport);
 
-
-app.use('/', rootRouter);
 app.use('/login', loginRouter);
 app.use('/register', registerRouter);
 
+
+//EXAMPLE FILE
+const rootRouter = require('./routes/example_custom_route.js')(passport);
+app.use('/', rootRouter);
 
 app.listen(5000 || process.env.PORT, () => {
   console.log("Listening on port 5000 || process.env.PORT");
